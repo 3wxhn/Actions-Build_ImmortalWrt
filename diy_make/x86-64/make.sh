@@ -67,11 +67,7 @@ fi
 if [[ "${BRANCH}" == "immortalwrt" ]]; then
 echo "$(date '+%Y-%m-%d %H:%M:%S') - 添加${BRANCH}内核模块..."
 PACKAGES="$PACKAGES luci-i18n-ramfree-zh-cn"
-if [[ "${PROFILE}" == "generic" ]]; then
 PACKAGES="$PACKAGES kmod-drm-gem-shmem-helper kmod-drm-dma-helper"
-else
-PACKAGES="$PACKAGES kmod-drm-gem-shmem-helper kmod-drm-panfrost kmod-drm-rockchip" #kmod-drm-lima:kmod-drm-panfrost kmod-drm-rockchip:kmod-drm-dma-helper
-fi
 PACKAGES="$PACKAGES  kmod-nft-fullcone"
 else
 echo "$(date '+%Y-%m-%d %H:%M:%S') - 添加${BRANCH}内核模块..."
@@ -123,7 +119,7 @@ if [ $? -ne 0 ]; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') - 打包镜像失败!"
     echo "building=fail" >> "$(pwd)/bin/.bashrc"
 fi
-if [[ -f "$(find "$(pwd)/bin/targets/" -type f -name "*.img.gz")" ]]; then
+if [[ -n "$(find "$(pwd)/bin/targets/" -type f -name "*.img.gz")" ]]; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') - 打包镜像完成."
     echo "building=success" >> "$(pwd)/bin/.bashrc"
 else
