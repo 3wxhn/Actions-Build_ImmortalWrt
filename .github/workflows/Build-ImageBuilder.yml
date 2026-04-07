@@ -12,7 +12,7 @@ on:
         options:
           - immortalwrt
           - openwrt
-        
+          
       device:
         description: |
           选择 imageBuilder 镜像和型号
@@ -48,7 +48,7 @@ on:
           - 512
           - 1024
           - 2048
-      
+          
       network_lan:
         description: |
           设置固件IP地址
@@ -66,7 +66,7 @@ on:
         type: choice
         options:
           - "https://raw.githubusercontent.com/3wxhn/Actions-Build_ImmortalWrt/refs/heads/main/x86-64.env"
-
+          
       diy_script:
         description: |
           设置Diy初始化脚本网址
