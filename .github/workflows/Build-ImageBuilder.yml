@@ -13,41 +13,37 @@ on:
           - immortalwrt
           - openwrt
           
-      image:
+      device:
         description: |
-          选择 imageBuilder 镜像
+          选择 imageBuilder 镜像和型号
         required: true
-        default: "x86-64"
+        default: "x86-64_generic"
         type: choice
         options:
-          - x86-64
-          - rockchip-armv8
+          - x86-64_generic
           
       version:
         description: |
           选择 OpenWrt 版本
         required: true
+<<<<<<< HEAD
+        default: "24.10.5"
+        type: choice
+        options:
+          - "24.10-SNAPSHOT"
+          - "24.10.5"
+=======
         default: "24.10.4"
         type: choice
         options:
           - "24.10-SNAPSHOT"
+>>>>>>> 41501d1c7b8901f07b2e7164c9a5e5c75fb345a2
           - "24.10.4"
           - "24.10.3"
           - "24.10.2"
           - "24.10.1"
           - "24.10.0"
           - "23.05.5"
-      
-      profile:
-        description: |
-          输入 软路由型号 可选值如下：
-        required: true
-        default: 'x86-64'
-        type: choice
-        options:
-          - x86-64
-          - nanopi-r6s
-          - orangepi-5plus
           
       rootfs_partsize:
         description: |
@@ -67,9 +63,25 @@ on:
         default: '10.10.10.10'
         type: choice
         options:
-          - "10.10.10.254"
           - "10.10.10.10"
-          - "192.168.100.1"
+          
+     diy_package:
+        description: |
+          设置Diy插件网址
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - "https://raw.githubusercontent.com/3wlh/Actions-ImageaBuilder/refs/heads/main/diy_env/x86-64.env"
+
+      diy_script:
+        description: |
+          设置Diy初始化脚本网址
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - "https://raw.githubusercontent.com/3wlh/Actions-ImageaBuilder/refs/heads/main/diy_env/x86-64.sh"
           
       docker:
         description: |
@@ -80,7 +92,7 @@ on:
         
       enable_pppoe:
         description: |
-          是否使用PPPoE协议?
+          是否默认PPPoE协议?
         required: true
         default: true
         type: boolean
@@ -89,17 +101,31 @@ on:
         description: |
           是否添加 宽带账号? (可留空)
         required: false
+        default: '123'
       pppoe_password:
         description: |
           是否添加 宽带密码? (可留空)
         required: false
-
-env:
-  UPLOAD_BIN_DIR: false
-  PATH_CACHE: /tmp/.cache
-  CACHE_IMAGE: imagebuilder:${{ inputs.image }}-${{ inputs.version }}.tar
-
+        default: '123'
+        
 jobs:
+<<<<<<< HEAD
+  Call_ImageBuilder:
+    uses: 3wlh/Actions-ImageaBuilder/.github/workflows/Call_ImageBuilder.yml@main
+    secrets: inherit
+    with:
+      branch: ${{ inputs.branch }}
+      device: ${{ inputs.device }}
+      version: ${{ inputs.version }}
+      rootfs_partsize: ${{ inputs.rootfs_partsize }}
+      network_lan: ${{ inputs.network_lan }}
+      docker: ${{ inputs.docker }}
+      enable_pppoe: ${{ inputs.enable_pppoe }}
+      pppoe_account: ${{ inputs.pppoe_account }}
+      pppoe_password: ${{ inputs.pppoe_password }}
+      diy_package: ${{ inputs.diy_package }}
+      diy_script: ${{ inputs.diy_script }}
+=======
   Build:
     name: Build ${{ inputs.branch }}-${{ inputs.version }}
     runs-on: ubuntu-22.04
@@ -252,3 +278,4 @@ jobs:
           makeLatest: true
           token: ${{ secrets.GITHUB_TOKEN }}
           bodyFile: info.md
+>>>>>>> 41501d1c7b8901f07b2e7164c9a5e5c75fb345a2
