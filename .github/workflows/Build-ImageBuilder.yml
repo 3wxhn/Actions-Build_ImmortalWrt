@@ -72,7 +72,7 @@ on:
         default: 'all'
         type: choice
         options:
-          - "https://raw.githubusercontent.com/3wlh/Actions-ImageaBuilder/refs/heads/main/diy_env/x86-64.env"
+          - "https://raw.githubusercontent.com/3wxhn/Actions-Build_ImmortalWrt/refs/heads/main/x86-64.env"
 
       diy_script:
         description: |
@@ -81,7 +81,7 @@ on:
         default: 'all'
         type: choice
         options:
-          - "https://raw.githubusercontent.com/3wlh/Actions-ImageaBuilder/refs/heads/main/diy_env/x86-64.sh"
+          - "https://raw.githubusercontent.com/3wxhn/Actions-Build_ImmortalWrt/refs/heads/main/x86-64.sh"
           
       docker:
         description: |
