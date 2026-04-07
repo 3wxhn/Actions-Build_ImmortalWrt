@@ -58,7 +58,7 @@ on:
         options:
           - "10.10.10.10"
           
-     diy_package:
+      diy_package:
         description: |
           设置Diy插件网址
         required: true
